@@ -54,7 +54,7 @@ public class VocabularyService {
     private List<Vocabulary> extractVocabularies(String content) {
         List<Vocabulary> vocabularies = new ArrayList<>();
         Pattern pattern = Pattern.compile(
-            "(\\d+)\\. vocabulary: (.+?)\\s+meaning: (.+?)\\s+example: (.+?)(?=\\n\\d+\\.|$)",
+            "(\\d+)\\. vocabulary: (.+?)\\s+meaning: (.+?)\\s+example: (.+?)(?=\\n\\d+\\.|\\n)",
             Pattern.DOTALL);
         Matcher matcher = pattern.matcher(content);
 
@@ -69,7 +69,7 @@ public class VocabularyService {
     }
 
 
-    @Scheduled(cron = "00 32 6 * * *")
+    @Scheduled(cron = "10 55 6 * * *")
     @Transactional
     public void scheduleApiCallAndParse() {
         String level = "A2"; // 또는 다른 방식으로 레벨을 결정
